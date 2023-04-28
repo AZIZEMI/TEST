@@ -1,24 +1,43 @@
-# Compiled class file
-*.class
+import java.util.ArrayList;
 
-# Log file
-*.log
+public class JobFinder {
+   private ArrayList<Job> availableJobs;
+   
+   public JobFinder(ArrayList<Job> availableJobs) {
+      this.availableJobs = availableJobs;
+   }
+   
+   public ArrayList<Job> findJobs(String keyword, String location, int minimumSalary) {
+      ArrayList<Job> matchingJobs = new ArrayList<>();
+      for (Job job : availableJobs) {
+         if (job.getTitle().contains(keyword) && job.getLocation().equals(location) && job.getSalary() >= minimumSalary) {
+            matchingJobs.add(job);
+         }
+      }
+      return matchingJobs;
+   }
+}
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+public class Job {
+   private String title;
+   private String location;
+   private int salary;
+   
+   public Job(String title, String location, int salary) {
+      this.title = title;
+      this.location = location;
+      this.salary = salary;
+   }
+   
+   public String getTitle() {
+      return title;
+   }
+   
+   public String getLocation() {
+      return location;
+   }
+   
+   public int getSalary() {
+      return salary;
+   }
+}
